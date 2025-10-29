@@ -31,7 +31,7 @@ output "ip_addresses" {
 
 output "users" {
   value = [
-    for user in module.sql-db.users : {
+    for user in module.sql-db.additional_users : {
       name     = user.name
       password = user.password
     }

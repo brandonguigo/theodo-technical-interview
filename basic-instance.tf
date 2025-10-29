@@ -3,7 +3,8 @@
 // use variables/terraform.tfvars in your root module.
 
 resource "google_compute_network" "default" {
-  name = "test-network"
+  name    = "test-network"
+  project = "my-gcp-project"
 }
 
 module "db_poc" {
@@ -15,7 +16,7 @@ module "db_poc" {
   database_version = "POSTGRES_14"
 
   vpc_network = google_compute_network.default.name
-  ip_address = "10.220.0.0"
+  ip_address  = "10.220.0.0"
 
   # Small tier suitable for PoC (low cost)
   tier              = "db-f1-micro"
