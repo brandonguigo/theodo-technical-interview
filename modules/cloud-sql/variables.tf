@@ -55,7 +55,7 @@ variable "activation_policy" {
 variable "backup_enabled" {
   description = "Enable automated backups"
   type        = bool
-  default     = true
+  default     = false
 }
 
 // Optional complex backup configuration. Use this to pass a rich backup
@@ -98,4 +98,16 @@ variable "labels" {
   description = "Labels to apply to the Cloud SQL instance"
   type        = map(string)
   default     = {}
+}
+
+variable "vpc_network" {
+  description = "Optional VPC network self-link to use for private IP configuration"
+  type        = string
+  default     = null
+}
+
+variable "ip_address" {
+  description = "Optional static IP address resource to use for private IP configuration"
+  type        = string
+  default     = null
 }

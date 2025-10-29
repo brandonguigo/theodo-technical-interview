@@ -2,6 +2,10 @@
 // Replace `project` and any sensitive values with your own values or
 // use variables/terraform.tfvars in your root module.
 
+resource "google_compute_network" "default" {
+  name = "test-network"
+}
+
 module "db_poc" {
   source = "./modules/cloud-sql"
 
@@ -9,6 +13,9 @@ module "db_poc" {
   region           = "us-central1"
   instance_name    = "poc-db"
   database_version = "POSTGRES_14"
+
+  vpc_network = google_compute_network.default.name
+  ip_address = "10.220.0.0"
 
   # Small tier suitable for PoC (low cost)
   tier              = "db-f1-micro"

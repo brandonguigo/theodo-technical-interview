@@ -29,3 +29,14 @@ output "ip_addresses" {
   value       = try(module.sql-db.ip_addresses, module.sql-db.ip_address, null)
 }
 
+output "users" {
+  value = [
+    for user in module.sql-db.users : {
+      name     = user.name
+      password = user.password
+    }
+  ]
+  sensitive   = true
+  description = "List of users that have access to CloudSQL instance"
+}
+

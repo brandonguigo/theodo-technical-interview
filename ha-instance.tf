@@ -1,7 +1,6 @@
 // High-availability, production-like example. Use this as a template for
 // scalable HA instances. Replace secrets and project values with secure
 // references (Secret Manager) in production.
-
 module "db_ha" {
   source = "./modules/cloud-sql"
 
@@ -32,8 +31,9 @@ module "db_ha" {
   # Protect against accidental deletion in prod
   deletion_protection = true
 
-  # NOTE: do NOT hardcode secrets in production. Use a secret manager.
-  root_password = "REPLACE_WITH_SECRET"
+  # Enable private service access for the Cloud SQL instance
+  vpc_network = google_compute_network.default.name
+  ip_address  = "10.220.0.0"
 
   database_name = "app_prod"
 

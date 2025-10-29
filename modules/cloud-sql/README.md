@@ -56,6 +56,8 @@ module "db" {
 
 - `ip_addresses` (object|null) — IP address objects for the instance (may be
   null for private-only instances or if the nested module uses different naming).
+  
+- `users` (list(object)) - list of username / pwd combo to use to access the database.
 
 ## Examples and notes about referencing outputs
 

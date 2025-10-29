@@ -1,3 +1,11 @@
+
+locals {
+  additional_users = [for userid in var.additional_users : {
+    name            = userid
+    random_password = true
+  }]
+}
+
 resource "random_password" "root_password" {
   length           = 32
   special          = true
@@ -29,9 +37,5 @@ module "sql-db" {
   additional_users     = local.additional_users
 }
 
-locals {
-  additional_users = [for userid in var.additional_users : {
-    name            = userid
-    random_password = true
-  }]
-}
+
+
